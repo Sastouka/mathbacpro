@@ -58,9 +58,8 @@
             padding: 60px 20px 0px; 
             text-align: center;
             position: relative;
-            /* CRUCIAL : On met le Hero au-dessus de la section suivante */
             z-index: 20; 
-            overflow: visible; /* CRUCIAL : Laisse l'image dépasser */
+            overflow: visible;
         }
 
         .hero-content { position: relative; z-index: 2; max-width: 800px; margin: 0 auto; }
@@ -102,6 +101,7 @@
             max-width: 600px; margin-left: auto; margin-right: auto;
         }
 
+        /* Styles des boutons principaux */
         .cta-button {
             display: inline-flex; align-items: center; justify-content: center;
             background: var(--primary); color: white;
@@ -113,16 +113,14 @@
         .cta-button:hover { transform: translateY(-3px); background: var(--primary-dark); }
         .cta-button img { height: 26px; margin-right: 12px; }
 
-        /* --- BANNIERE QUI POSE PROBLEME (CORRIGÉE) --- */
+        /* --- BANNIERE --- */
         .hero-banner-container { 
             margin-top: 40px; 
-            margin-bottom: -80px; /* On la fait descendre sur la section blanche */
+            margin-bottom: -80px; 
             padding: 0 10px; 
             perspective: 1000px; 
-            
-            /* LA CORRECTION : */
             position: relative; 
-            z-index: 50; /* Doit être plus grand que la section suivante */
+            z-index: 50;
         }
         .hero-banner {
             max-width: 1100px; width: 100%; height: auto;
@@ -137,11 +135,8 @@
         .features-section { 
             background-color: var(--white); 
             position: relative; 
-            
-            /* LA CORRECTION : Cette section est en dessous */
             z-index: 10; 
-            
-            padding-top: 130px; /* On laisse de la place pour le haut de la bannière */
+            padding-top: 130px; 
             padding-bottom: 80px;
             padding-left: 20px; padding-right: 20px;
         }
@@ -198,14 +193,36 @@
         .footer-legal a { color: white; text-decoration: none; margin: 0 8px; }
         .footer-legal a:hover { text-decoration: underline; }
 
-        /* --- MOBILE STICKY BTN --- */
+        /* --- MOBILE STICKY BTN (CORRIGÉ) --- */
         .mobile-sticky-btn {
-            display: none; position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
-            width: calc(100% - 40px); max-width: 400px;
-            background: var(--accent-red); color: white;
-            padding: 15px; text-align: center; border-radius: 50px;
-            font-weight: 700; text-decoration: none; font-size: 1.1rem;
-            box-shadow: 0 10px 30px rgba(234, 82, 57, 0.4); z-index: 1000;
+            display: none; /* Caché sur PC */
+            position: fixed; 
+            bottom: 20px; 
+            left: 50%; 
+            transform: translateX(-50%); /* Centre parfaitement horizontalement */
+            width: calc(100% - 40px); 
+            max-width: 400px;
+            background: var(--accent-red); 
+            color: white;
+            padding: 15px; 
+            border-radius: 50px;
+            font-weight: 700; 
+            text-decoration: none; 
+            font-size: 1rem;
+            box-shadow: 0 10px 30px rgba(234, 82, 57, 0.4); 
+            z-index: 1000;
+            
+            /* Flexbox pour centrer le contenu (icône + texte) */
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Style de l'image dans le bouton flottant */
+        .mobile-sticky-btn img {
+            height: 24px;
+            margin-right: 10px;
+            /* Rend l'icône blanche */
+            filter: brightness(0) invert(1); 
         }
 
         /* RESPONSIVE BREAKPOINTS */
@@ -214,7 +231,9 @@
         }
 
         @media (max-width: 768px) {
-            .mobile-sticky-btn { display: block; }
+            /* Affiche le bouton sur mobile et tablette */
+            .mobile-sticky-btn { display: flex; } 
+            
             .footer-cta { padding-bottom: 100px; }
             .hero-banner-container { margin-bottom: -50px; margin-top: 30px; }
             .features-section { padding-top: 90px; }
@@ -233,6 +252,7 @@
 <body>
 
     <a href="https://play.google.com/store/apps/details?id=com.sastoukadigital.mathbacpro" class="mobile-sticky-btn" onclick="fbq('track', 'Lead');">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Google_Play_Arrow_logo.svg" alt="Google Play">
         TÉLÉCHARGER L'APPLI
     </a>
 
@@ -243,7 +263,7 @@
         <div class="hero-content">
             <img src="paint (512 x 512 px) (1).png" alt="MathBac Logo" class="app-icon" onerror="this.src='https://placehold.co/150?text=ICON'">
             
-            <div class="badge-new">Nouveau Programme </div>
+            <div class="badge-new">Nouveau Programme 2025</div>
             <h1>Ne subissez plus les Maths.<br><span>Maîtrisez-les.</span></h1>
             <p class="subtitle">Spécialité • Expertes • Complémentaires. <br>L'application tout-en-un pour viser la Mention Très Bien.</p>
             
@@ -322,7 +342,7 @@
             <div class="phone-frame"><img src="MATHBAC (3).jpg" alt="Traceur"></div>
             <div class="phone-frame"><img src="MATHBAC (9).jpg" alt="Sujet Exam"></div>
             <div class="phone-frame"><img src="MATHBAC (10).jpg" alt="Corrigé"></div>
-            <div class="phone-frame"><img src="MATHBAC (4).jpg" alt="Autre"></div>
+            <div class="phone-frame"><img src="MATHBAC (6).jpg" alt="Autre"></div>
         </div>
     </section>
 
