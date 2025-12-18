@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>MATHBAC - L'application n°1 pour le Bac Maths</title>
+    <meta name="description" content="L'outil ultime pour réussir son Bac de Maths (Spécialité, Expertes, Complémentaires). Cours, Annales, Traceur et Calculatrice.">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    
+    // REMPLACEZ CI-DESSOUS PAR VOTRE ID DE PIXEL
+    fbq('init', 'VOTRE_ID_PIXEL_ICI'); 
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=VOTRE_ID_PIXEL_ICI&ev=PageView&noscript=1"/></noscript>
+
+    <style>
+        :root {
+            /* --- PALETTE OFFICIELLE MATHBAC --- */
+            --primary: #2D81C5;       
+            --primary-dark: #1F6296;  
+            --cyan-light: #95E9FA;    
+            --accent-red: #EA5239;    
+            --accent-green: #1E7E46;  
+            --accent-gold: #F09325;   
+            
+            --text-dark: #1A237E;
+            --text-body: #455A64;
+            --bg-light: #F8F9FA;
+            --white: #ffffff;
+
+            --gradient-hero: linear-gradient(170deg, var(--cyan-light) 0%, #FFFFFF 100%);
+            --shadow-card: 0 10px 30px rgba(0,0,0,0.05);
+            --shadow-hover: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        /* RESET ET BASE */
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-body);
+            line-height: 1.6;
+            overflow-x: hidden; /* Empêche le scroll horizontal accidentel */
+            font-size: 16px; /* Base pour le responsive */
+        }
+
+        /* --- ANIMATIONS --- */
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            background: var(--gradient-hero);
+            padding: 80px 20px 0px; /* Plus d'espace en haut sur PC */
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .shape { position: absolute; opacity: 0.1; z-index: 0; pointer-events: none; }
+        .shape-1 { top: -50px; left: -50px; width: 300px; height: 300px; background: var(--primary); border-radius: 50%; filter: blur(60px); }
+        .shape-2 { top: 20%; right: -100px; width: 200px; height: 200px; background: var(--accent-red); border-radius: 50%; filter: blur(70px); }
+
+        .hero-content { position: relative; z-index: 1; max-width: 800px; margin: 0 auto; }
+
+        .app-icon {
+            width: 140px; height: 140px;
+            border-radius: 35px;
+            box-shadow: 0 20px 40px rgba(45, 129, 197, 0.25);
+            margin-bottom: 30px;
+            background: white;
+            object-fit: cover;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+
+        .badge-new {
+            background: #E1F5FE; color: var(--primary);
+            padding: 6px 16px; border-radius: 20px;
+            font-size: 0.85rem; font-weight: 700; letter-spacing: 1px;
+            text-transform: uppercase; margin-bottom: 20px; display: inline-block;
+        }
+
+        .hero h1 {
+            font-weight: 900; 
+            /* Taille fluide : min 2.2rem, idéal 5vw, max 4rem */
+            font-size: clamp(2.2rem, 5vw, 4rem); 
+            margin-bottom: 20px; color: var(--text-dark);
+            line-height: 1.1; letter-spacing: -1px;
+        }
+        .hero h1 span { color: var(--accent-red); }
+
+        .hero .subtitle {
+            font-size: clamp(1rem, 1.5vw, 1.25rem); /* Sous-titre adaptatif */
+            font-weight: 400;
+            color: var(--text-body); margin-bottom: 40px;
+            max-width: 700px; margin-left: auto; margin-right: auto;
+            padding: 0 10px;
+        }
+
+        /* --- BOUTONS --- */
+        .cta-button {
+            display: inline-flex; align-items: center; justify-content: center;
+            background: var(--primary);
+            color: white;
+            padding: 16px 40px; border-radius: 50px;
+            text-decoration: none; font-weight: 700; font-size: 1.1rem;
+            transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+            box-shadow: 0 10px 25px rgba(45, 129, 197, 0.3);
+            cursor: pointer;
+            border: none;
+            white-space: nowrap; /* Empêche le texte de passer à la ligne */
+        }
+        .cta-button:hover { 
+            transform: translateY(-3px); 
+            background: var(--primary-dark);
+            box-shadow: 0 15px 35px rgba(45, 129, 197, 0.4); 
+        }
+        .cta-button img { height: 28px; margin-right: 12px; }
+
+        /* --- BANNIERES --- */
+        .hero-banner-container { 
+            margin-top: 50px; margin-bottom: -80px; 
+            padding: 0 20px; perspective: 1000px; 
+        }
+        .hero-banner {
+            max-width: 1100px; width: 100%;
+            height: auto; /* IMPORTANT pour le ratio */
+            border-radius: 20px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+            transform: rotateX(2deg); transition: transform 0.5s;
+            display: block; margin: 0 auto;
+        }
+        .hero-banner:hover { transform: rotateX(0deg) scale(1.01); }
+
+        /* --- SECTIONS COMMUNES --- */
+        .section-wrapper {
+            padding: 120px 20px 80px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-header { text-align: center; margin-bottom: 60px; max-width: 800px; margin-left: auto; margin-right: auto; }
+        .section-header h2 { 
+            font-size: clamp(1.8rem, 4vw, 2.5rem); 
+            font-weight: 800; color: var(--text-dark); margin-bottom: 15px; 
+        }
+        .section-header p { font-size: 1.1rem; color: #78909C; padding: 0 10px; }
+
+        /* --- FEATURES GRID (Responsive) --- */
+        .features-section { background-color: var(--white); position: relative; z-index: 10; padding-top: 140px; } /* Padding top pour compenser la bannière */
+
+        .features-grid {
+            display: grid;
+            /* Passage auto de 1 à 3 colonnes selon la largeur disponible */
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 80px;
+        }
+
+        .feature-item {
+            text-align: left; padding: 40px 30px;
+            border-radius: 25px; background: #fff;
+            border: 1px solid #F0F4F8;
+            box-shadow: var(--shadow-card);
+            transition: 0.3s;
+        }
+        .feature-item:hover { transform: translateY(-8px); box-shadow: var(--shadow-hover); border-color: transparent; }
+        
+        .feature-icon { 
+            font-size: 2.5rem; margin-bottom: 25px; display: inline-flex; align-items: center; justify-content: center;
+            width: 70px; height: 70px; border-radius: 20px;
+        }
+        .f-blue .feature-icon { background: #E1F5FE; color: var(--primary); }
+        .f-green .feature-icon { background: #E8F5E9; color: var(--accent-green); }
+        .f-orange .feature-icon { background: #FFF3E0; color: var(--accent-gold); }
+
+        .feature-item h3 { font-size: 1.3rem; color: var(--text-dark); margin-bottom: 12px; font-weight: 700; }
+        .feature-item p { font-size: 0.95rem; color: var(--text-body); }
+
+        /* Bannière milieu */
+        .mid-banner { 
+            width: 100%; height: auto; 
+            display: block; border-radius: 25px; 
+            box-shadow: var(--shadow-hover); 
+        }
+
+        /* --- AVIS GRID --- */
+        .reviews-section { background: #F8F9FA; border-top: 1px solid #eee; }
+        .reviews-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 25px; 
+        }
+        .review-card { background: white; padding: 30px; border-radius: 20px; text-align: left; box-shadow: var(--shadow-card); }
+        .stars { color: var(--accent-gold); margin-bottom: 15px; font-size: 1.1rem; }
+        .review-text { font-style: italic; color: var(--text-body); margin-bottom: 20px; font-size: 0.95rem; line-height: 1.7; }
+        .reviewer { font-weight: 700; color: var(--text-dark); font-size: 0.9rem; display: flex; align-items: center; }
+        .avatar-placeholder { width: 35px; height: 35px; background: #ECEFF1; border-radius: 50%; margin-right: 12px; }
+
+        /* --- GALERIE GRID --- */
+        .gallery-section { background: #fff; }
+        .gallery-grid {
+            display: grid;
+            /* 4 colonnes sur PC, 2 sur Tablette, 1 sur Mobile (voir media queries) */
+            grid-template-columns: repeat(4, 1fr); 
+            gap: 20px;
+        }
+        .phone-frame {
+            border-radius: 20px; overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border: 6px solid #2d3436; background: #eee;
+            aspect-ratio: 9/19; /* Garde le format téléphone */
+            transition: transform 0.3s;
+        }
+        .phone-frame:hover { transform: scale(1.02); z-index: 5; }
+        .phone-frame img { width: 100%; height: 100%; object-fit: cover; }
+
+        /* --- FAQ --- */
+        .faq-section { max-width: 800px; margin: 0 auto; }
+        .faq-item { margin-bottom: 15px; border: 1px solid #eee; border-radius: 15px; background: white; overflow: hidden; transition: 0.3s; }
+        .faq-item:hover { box-shadow: 0 5px 15px rgba(0,0,0,0.03); }
+        .faq-question { 
+            padding: 20px; font-weight: 700; color: var(--text-dark); 
+            cursor: pointer; display: flex; justify-content: space-between; align-items: center; 
+            user-select: none;
+        }
+        .faq-question span { font-size: 1.5rem; color: var(--primary); font-weight: 300; }
+        .faq-answer { 
+            padding: 0 20px 20px; color: var(--text-body); 
+            display: none; font-size: 0.95rem; border-top: 1px solid transparent; 
+        }
+        .faq-item.active .faq-answer { display: block; border-top-color: #f5f5f5; padding-top: 15px; animation: slideDown 0.3s; }
+        @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* --- FOOTER --- */
+        .footer-cta {
+            background: linear-gradient(135deg, #1A237E, #0d1246);
+            color: white; text-align: center; 
+            padding: 100px 20px 60px;
+            margin-top: 0; position: relative;
+        }
+        .footer-cta h2 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 40px; }
+        .footer-links { margin-top: 60px; font-size: 0.85rem; color: rgba(255,255,255,0.6); }
+
+        /* --- STICKY MOBILE CTA --- */
+        .mobile-sticky-btn {
+            display: none; /* Caché par défaut (PC) */
+            position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+            width: calc(100% - 40px); max-width: 400px;
+            background: var(--accent-red); /* Rouge accrocheur */
+            color: white;
+            padding: 16px; text-align: center; border-radius: 50px;
+            font-weight: 700; text-decoration: none; font-size: 1.1rem;
+            box-shadow: 0 10px 30px rgba(234, 82, 57, 0.4);
+            z-index: 1000; animation: slideUp 0.5s ease-out;
+        }
+        .mobile-sticky-btn:active { transform: translateX(-50%) scale(0.98); }
+
+        /* ========================================= */
+        /* MEDIA QUERIES (LE COEUR DU RESPONSIVE)    */
+        /* ========================================= */
+
+        /* TABLETTES & PETITS PC (max 1024px) */
+        @media (max-width: 1024px) {
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 30px; }
+            .hero-banner-container { margin-bottom: -50px; }
+        }
+
+        /* MOBILE (max 768px) */
+        @media (max-width: 768px) {
+            .hero { padding-top: 60px; }
+            .hero-banner-container { margin-top: 30px; margin-bottom: -40px; }
+            
+            /* On affiche le bouton flottant */
+            .mobile-sticky-btn { display: block; }
+            
+            /* On ajoute du padding en bas du footer pour ne pas cacher le copyright derrière le bouton */
+            .footer-cta { padding-bottom: 120px; }
+            
+            /* Grilles à 1 colonne */
+            .features-grid, .reviews-grid { grid-template-columns: 1fr; gap: 20px; }
+            
+            .feature-item { padding: 30px 25px; }
+        }
+
+        /* PETITS ECRANS (max 480px) */
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 2.2rem; }
+            .app-icon { width: 100px; height: 100px; margin-bottom: 20px; }
+            
+            .gallery-grid { 
+                grid-template-columns: 1fr; /* 1 image par ligne */
+                padding: 0 30px; /* Marges latérales pour que ce soit joli */
+            }
+            
+            .section-wrapper { padding-top: 80px; padding-bottom: 60px; }
+            .features-section { padding-top: 100px; }
+            
+            /* Ajustement des textes */
+            .section-header h2 { font-size: 1.8rem; }
+            .cta-button { padding: 14px 25px; font-size: 1rem; width: 100%; }
+        }
+        
+        @keyframes slideUp { from { transform: translate(-50%, 100px); } to { transform: translate(-50%, 0); } }
+    </style>
+</head>
+<body>
+
+    <a href="https://play.google.com/store/apps/details?id=com.sastoukadigital.mathbacpro" class="mobile-sticky-btn" onclick="fbq('track', 'Lead');">
+        TÉLÉCHARGER L'APPLI
+    </a>
+
+    <header class="hero">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+
+        <div class="hero-content reveal active">
+            <img src="paint (512 x 512 px) (1).png" alt="MathBac Logo" class="app-icon" onerror="this.src='https://placehold.co/150?text=ICON'">
+            
+            <div class="badge-new">Nouveau Programme 2025</div>
+            <h1>Ne subissez plus les Maths.<br><span>Maîtrisez-les.</span></h1>
+            <p class="subtitle">Spécialité • Expertes • Complémentaires. <br>L'application tout-en-un pour viser la Mention Très Bien.</p>
+            
+            <div onclick="fbq('track', 'Lead'); window.open('https://play.google.com/store/apps/details?id=com.sastoukadigital.mathbacpro', '_blank');" class="cta-button">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Google_Play_Arrow_logo.svg" alt="Google Play">
+                TÉLÉCHARGER GRATUITEMENT
+            </div>
+        </div>
+
+        <div class="hero-banner-container reveal">
+            <img src="banniere_2.png" alt="MathBac Interface" class="hero-banner" onerror="this.style.display='none'">
+        </div>
+    </header>
+
+    <section class="features-section section-wrapper">
+        <div class="section-header reveal">
+            <h2>Tout ce qu'il vous faut. Rien de plus.</h2>
+            <p>Une interface conçue par des enseignants pour aller droit au but.</p>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-item f-blue reveal">
+                <div class="feature-icon">📚</div>
+                <h3>Cours Synthétiques</h3>
+                <p>Fini les classeurs lourds. Accédez à des fiches de révision claires, triées par chapitre.</p>
+            </div>
+            <div class="feature-item f-green reveal">
+                <div class="feature-icon">🎓</div>
+                <h3>Annales Corrigées</h3>
+                <p>La clé de la réussite. Entraînez-vous sur de vrais sujets du Bac avec corrections détaillées.</p>
+            </div>
+            <div class="feature-item f-orange reveal">
+                <div class="feature-icon">🚀</div>
+                <h3>Outils Intégrés</h3>
+                <p>Traceur de fonctions et calculatrice scientifique inclus. Plus besoin d'autre matériel.</p>
+            </div>
+        </div>
+
+        <div class="reveal">
+            <img src="banniere_1.png" alt="Outils Puissants" class="mid-banner" onerror="this.style.display='none'">
+        </div>
+    </section>
+
+    <section class="reviews-section section-wrapper">
+        <div class="section-header reveal">
+            <h2>Ils l'utilisent déjà</h2>
+            <p>Retours certifiés de nos premiers utilisateurs.</p>
+        </div>
+        <div class="reviews-grid">
+            <div class="review-card reveal">
+                <div class="stars">★★★★★</div>
+                <p class="review-text">"Très bien et utile pour le niveau baccalauréat. C'est exactement ce qu'il me fallait pour mes révisions."</p>
+                <div class="reviewer"><div class="avatar-placeholder"></div>Utilisateur Samsung A53</div>
+            </div>
+            <div class="review-card reveal">
+                <div class="stars">★★★★★</div>
+                <p class="review-text">"C'est très important pour les élèves de terminale. Le traceur de fonction est super fluide."</p>
+                <div class="reviewer"><div class="avatar-placeholder"></div>Amar E. (Galaxy A03s)</div>
+            </div>
+            <div class="review-card reveal">
+                <div class="stars">★★★★★</div>
+                <p class="review-text">"Application stable et complète. J'aime beaucoup la séparation entre Spécialité et Expertes."</p>
+                <div class="reviewer"><div class="avatar-placeholder"></div>Testeur Bêta</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="gallery-section section-wrapper">
+        <div class="section-header reveal">
+            <h2>Interface Premium</h2>
+            <p>Un design épuré pour une concentration maximale.</p>
+        </div>
+        
+        <div class="gallery-grid">
+            <div class="phone-frame reveal"><img src="MATHBAC (8).jpg" alt="Choix Parcours" onerror="this.src='1000015024.jpg'"></div>
+            <div class="phone-frame reveal"><img src="MATHBAC (7).jpg" alt="Dashboard"></div>
+            <div class="phone-frame reveal"><img src="MATHBAC (1).jpg" alt="Formules"></div>
+            <div class="phone-frame reveal"><img src="MATHBAC (14).jpg" alt="Exercices"></div>
+            <div class="phone-frame reveal"><img src="MATHBAC (3).jpg" alt="Traceur"></div>
+            <div class="phone-frame reveal"><img src="MATHBAC (9).jpg" alt="Sujet Exam"></div>
+            <div class="phone-frame reveal"><img src="MATHBAC (10).jpg" alt="Corrigé"></div>
+            <div class="phone-frame reveal"><img src="MATHBAC (4).jpg" alt="Accueil"></div>
+        </div>
+    </section>
+
+    <section class="faq-section section-wrapper reveal">
+        <div class="section-header">
+            <h2>Questions Fréquentes</h2>
+        </div>
+        
+        <div class="faq-item" onclick="this.classList.toggle('active')">
+            <div class="faq-question">L'application fonctionne-t-elle sans internet ? <span>+</span></div>
+            <div class="faq-answer">Oui ! La plupart des outils comme la calculatrice et le traceur fonctionnent totalement hors ligne. Les cours sont téléchargés au premier lancement.</div>
+        </div>
+        <div class="faq-item" onclick="this.classList.toggle('active')">
+            <div class="faq-question">Est-ce adapté pour les Maths Expertes ? <span>+</span></div>
+            <div class="faq-answer">Absolument. Nous avons un module dédié "Maths Expertes" avec les nombres complexes, l'arithmétique et les matrices.</div>
+        </div>
+        <div class="faq-item" onclick="this.classList.toggle('active')">
+            <div class="faq-question">L'application est-elle gratuite ? <span>+</span></div>
+            <div class="faq-answer">Le téléchargement est gratuit et donne accès à de nombreux cours et outils. Un "Pack Réussite" optionnel débloque les corrigés détaillés.</div>
+        </div>
+    </section>
+
+    <footer class="footer-cta">
+        <h2>Votre Mention commence ici.</h2>
+        <br>
+        <div onclick="fbq('track', 'Lead'); window.open('https://play.google.com/store/apps/details?id=com.sastoukadigital.mathbacpro', '_blank');" class="cta-button" style="background: white; color: var(--text-dark);">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Google_Play_Arrow_logo.svg" alt="Google Play">
+            OBTENIR SUR ANDROID
+        </div>
+        <div class="footer-links">
+            <p>&copy; 2025 Sastouka Digital. Tous droits réservés.</p>
+            <p>MathBac Pro - Application éducative pour le Baccalauréat.</p>
+        </div>
+    </footer>
+
+    <script>
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 50;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        reveal(); // Lancer une fois au chargement
+    </script>
+
+</body>
+</html>
