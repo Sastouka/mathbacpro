@@ -13,9 +13,9 @@ L'application combine des ressources pédagogiques (cours, annales) et des outil
 
 ## 📱 Aperçu de l'application
 
-| Accueil | Choix Parcours | Traceur | Annales |
+| Choix Parcours | Dashboard | Traceur | Corrigés |
 |:---:|:---:|:---:|:---:|
-| <img src="images/screen1.jpg" width="200" /> | <img src="images/screen2.jpg" width="200" /> | <img src="images/screen3.jpg" width="200" /> | <img src="images/screen4.jpg" width="200" /> |
+| <img src="images/MATHBAC (8).jpg" width="200" /> | <img src="images/MATHBAC (7).jpg" width="200" /> | <img src="images/MATHBAC (3).jpg" width="200" /> | <img src="images/MATHBAC (10).jpg" width="200" /> |
 
 ---
 
@@ -39,7 +39,7 @@ L'application combine des ressources pédagogiques (cours, annales) et des outil
 ### 💎 Modèle Freemium & Monétisation
 * **Système Premium :** Intégration de `in_app_purchase` pour débloquer le "Pack Réussite".
 * **Contenu Verrouillé :** Les corrigés détaillés et certaines fonctionnalités avancées sont floutés pour les utilisateurs gratuits.
-* **Paywall :** Interface de vente incitative moderne.
+* **Paywall :** Interface de vente incitative moderne et attractive.
 
 ---
 
@@ -68,7 +68,7 @@ lib/
 │   ├── subject_selection.dart# Page de choix (Spé/Expertes/Comp)
 │   ├── courses_page.dart     # Liste des chapitres
 │   ├── calculator_page.dart  # Calculatrice scientifique
-│   ├── tracer_page.dart      # Traceur de fonctions
+│   ├── function_tracer_page.dart # Traceur de fonctions
 │   └── ...
 ├── services/
 │   ├── data_service.dart     # Chargeur de JSON (Cours, Exos)
