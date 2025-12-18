@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>Politique de Confidentialité - MATHBAC</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
@@ -12,29 +12,74 @@
             --text-body: #455A64;
             --bg-light: #F8F9FA;
         }
-        body { font-family: 'Poppins', sans-serif; background: var(--bg-light); color: var(--text-body); line-height: 1.8; margin: 0; padding: 0; }
-        .container { max-width: 800px; margin: 0 auto; padding: 40px 20px; background: white; min-height: 100vh; box-shadow: 0 0 20px rgba(0,0,0,0.05); }
-        h1 { color: var(--text-dark); font-size: 2rem; margin-bottom: 10px; }
-        h2 { color: var(--primary); font-size: 1.4rem; margin-top: 30px; border-bottom: 2px solid #eee; padding-bottom: 10px; }
-        p { margin-bottom: 15px; }
-        .back-btn { display: inline-block; margin-bottom: 30px; text-decoration: none; color: var(--primary); font-weight: 600; }
-        .footer { margin-top: 50px; font-size: 0.8rem; text-align: center; opacity: 0.6; }
+        
+        * { box-sizing: border-box; }
+
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            background: var(--bg-light); 
+            color: var(--text-body); 
+            line-height: 1.6; 
+            margin: 0; 
+            padding: 20px 0; 
+            font-size: 16px; /* Taille standard mobile */
+        }
+
+        .container { 
+            width: 95%; /* Prend 95% de la largeur sur mobile */
+            max-width: 800px; /* Ne dépasse pas 800px sur PC */
+            margin: 0 auto; 
+            padding: 40px; 
+            background: white; 
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05); 
+        }
+
+        h1 { color: var(--text-dark); font-size: clamp(1.5rem, 4vw, 2.2rem); margin-bottom: 10px; line-height: 1.2; }
+        h2 { color: var(--primary); font-size: 1.3rem; margin-top: 30px; border-bottom: 2px solid #eee; padding-bottom: 10px; }
+        
+        p, li { margin-bottom: 15px; text-align: justify; }
+        ul { padding-left: 20px; }
+
+        .back-btn { 
+            display: inline-block; 
+            margin-bottom: 20px; 
+            text-decoration: none; 
+            color: var(--primary); 
+            font-weight: 700; 
+            background: #E1F5FE;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+        .back-btn:hover { background: var(--primary); color: white; }
+
+        .footer { margin-top: 50px; font-size: 0.85rem; text-align: center; opacity: 0.6; border-top: 1px solid #eee; padding-top: 20px; }
+
+        /* Optimisation Mobile */
+        @media (max-width: 600px) {
+            .container { padding: 25px 20px; width: 100%; border-radius: 0; }
+            body { padding: 0; }
+            h1 { font-size: 1.6rem; }
+            p, li { text-align: left; } /* Plus facile à lire sur mobile */
+        }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <a href="index.html" class="back-btn">← Retour à l'accueil</a>
+    <a href="index.html" class="back-btn">← Retour</a>
     
     <h1>Politique de Confidentialité</h1>
-    <p>Dernière mise à jour : 19 Décembre 2025</p>
+    <p style="color: #888; font-size: 0.9rem;">Dernière mise à jour : 19 Décembre 2025</p>
 
     <p>La présente Politique de Confidentialité décrit la manière dont <strong>Sastouka Digital</strong> ("nous", "notre") collecte, utilise et protège les informations des utilisateurs de l'application <strong>MATHBAC</strong>.</p>
 
     <h2>1. Collecte des Données</h2>
     <p>L'application MATHBAC a été conçue pour minimiser la collecte de données. Nous ne collectons <strong>aucune donnée personnelle identifiant directement</strong> les élèves (nom, adresse, numéro de téléphone) pour le fonctionnement de base de l'application.</p>
 
-    <h2>2. Données Techniques et Analytiques</h2>
+    <h2>2. Données Techniques</h2>
     <p>Pour améliorer l'expérience utilisateur et corriger les bugs, nous pouvons utiliser des services tiers (comme Google Analytics ou Firebase) qui collectent des données techniques anonymes :</p>
     <ul>
         <li>Modèle de l'appareil (ex: Samsung A53).</li>
@@ -54,7 +99,7 @@
 
     <h2>5. Contact</h2>
     <p>Pour toute question concernant cette politique, vous pouvez nous contacter à :<br>
-    <strong>Email :</strong> sastoukadigital@gmail.com</p>
+    <strong>Email :</strong> <a href="mailto:sastoukadigital@gmail.com" style="color: var(--primary);">sastoukadigital@gmail.com</a></p>
 
     <div class="footer">
         &copy; 2025 Sastouka Digital. Tous droits réservés.

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>MATHBAC - L'application n°1 pour le Bac Maths</title>
-    <meta name="description" content="L'outil ultime pour réussir son Bac de Maths (Spécialité, Expertes, Complémentaires). Cours, Annales, Traceur et Calculatrice.">
+    <meta name="description" content="L'outil ultime pour réussir son Bac de Maths. Cours, Annales, Traceur et Calculatrice.">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     
     <script>
@@ -21,30 +21,26 @@
     fbq('init', 'VOTRE_ID_PIXEL_ICI'); 
     fbq('track', 'PageView');
     </script>
-    <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=VOTRE_ID_PIXEL_ICI&ev=PageView&noscript=1"
-    /></noscript>
+    <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=VOTRE_ID_PIXEL_ICI&ev=PageView&noscript=1"/></noscript>
+
     <style>
         :root {
-            /* --- PALETTE MATHBAC --- */
-            --primary: #2D81C5;       
-            --primary-dark: #1F6296;  
-            --cyan-light: #95E9FA;    
-            --accent-red: #EA5239;    
-            --accent-green: #1E7E46;  
-            --accent-gold: #F09325;   
+            /* Palette extraite de l'icône */
+            --primary: #2D81C5;
+            --primary-dark: #1F6296;
+            --cyan-light: #95E9FA;
+            --accent-red: #EA5239;
+            --accent-green: #1E7E46;
+            --accent-gold: #F09325;
             
             --text-dark: #1A237E;
             --text-body: #455A64;
             --bg-light: #F8F9FA;
             --white: #ffffff;
-
             --gradient-hero: linear-gradient(170deg, var(--cyan-light) 0%, #FFFFFF 100%);
-            --shadow-card: 0 10px 30px rgba(0,0,0,0.05);
             --shadow-hover: 0 20px 40px rgba(0,0,0,0.1);
         }
 
-        /* RESET */
         * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
 
         body {
@@ -53,34 +49,32 @@
             color: var(--text-body);
             line-height: 1.6;
             overflow-x: hidden;
-            font-size: 16px;
+            font-size: 16px; /* Taille de base pour éviter le zoom */
         }
 
         /* --- HERO SECTION --- */
         .hero {
             background: var(--gradient-hero);
-            padding: 80px 20px 0px; 
+            padding: 60px 20px 0px; 
             text-align: center;
             position: relative;
-            
-            /* CORRECTION MAJEURE ICI : */
-            /* On met le Hero (Bleu) AU-DESSUS de la section suivante (Blanche) */
+            /* CRUCIAL : On met le Hero au-dessus de la section suivante */
             z-index: 20; 
-            overflow: visible; /* On force tout contenu qui dépasse à être visible */
+            overflow: visible; /* CRUCIAL : Laisse l'image dépasser */
         }
 
-        /* Formes d'arrière-plan */
+        .hero-content { position: relative; z-index: 2; max-width: 800px; margin: 0 auto; }
+
+        /* Décorations arrière-plan */
         .shape { position: absolute; opacity: 0.1; z-index: 0; pointer-events: none; }
         .shape-1 { top: -50px; left: -50px; width: 300px; height: 300px; background: var(--primary); border-radius: 50%; filter: blur(60px); }
         .shape-2 { top: 20%; right: -100px; width: 200px; height: 200px; background: var(--accent-red); border-radius: 50%; filter: blur(70px); }
 
-        .hero-content { position: relative; z-index: 2; max-width: 800px; margin: 0 auto; }
-
         .app-icon {
-            width: 140px; height: 140px;
+            width: 130px; height: 130px;
             border-radius: 35px;
             box-shadow: 0 20px 40px rgba(45, 129, 197, 0.25);
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             background: white;
             object-fit: cover;
             animation: float 6s ease-in-out infinite;
@@ -91,187 +85,149 @@
         .badge-new {
             background: #E1F5FE; color: var(--primary);
             padding: 6px 16px; border-radius: 20px;
-            font-size: 0.85rem; font-weight: 700; letter-spacing: 1px;
-            text-transform: uppercase; margin-bottom: 20px; display: inline-block;
+            font-size: 0.85rem; font-weight: 700; text-transform: uppercase; margin-bottom: 20px; display: inline-block;
         }
 
         .hero h1 {
             font-weight: 900; 
             font-size: clamp(2.2rem, 5vw, 4rem); 
-            margin-bottom: 20px; color: var(--text-dark);
+            margin-bottom: 15px; color: var(--text-dark);
             line-height: 1.1; letter-spacing: -1px;
         }
         .hero h1 span { color: var(--accent-red); }
 
         .hero .subtitle {
-            font-size: clamp(1rem, 1.5vw, 1.25rem);
-            font-weight: 400;
-            color: var(--text-body); margin-bottom: 40px;
-            max-width: 700px; margin-left: auto; margin-right: auto;
-            padding: 0 10px;
+            font-size: clamp(1rem, 4vw, 1.2rem);
+            font-weight: 400; color: var(--text-body); margin-bottom: 30px;
+            max-width: 600px; margin-left: auto; margin-right: auto;
         }
 
-        /* --- BOUTONS CTA --- */
         .cta-button {
             display: inline-flex; align-items: center; justify-content: center;
-            background: var(--primary);
-            color: white;
-            padding: 16px 40px; border-radius: 50px;
+            background: var(--primary); color: white;
+            padding: 15px 35px; border-radius: 50px;
             text-decoration: none; font-weight: 700; font-size: 1.1rem;
-            transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
-            box-shadow: 0 10px 25px rgba(45, 129, 197, 0.3);
-            cursor: pointer; border: none; white-space: nowrap; 
+            transition: 0.2s; box-shadow: 0 10px 25px rgba(45, 129, 197, 0.3);
+            border: none; white-space: nowrap; cursor: pointer;
         }
-        .cta-button:hover { 
-            transform: translateY(-3px); 
-            background: var(--primary-dark);
-            box-shadow: 0 15px 35px rgba(45, 129, 197, 0.4); 
-        }
-        .cta-button img { height: 28px; margin-right: 12px; }
+        .cta-button:hover { transform: translateY(-3px); background: var(--primary-dark); }
+        .cta-button img { height: 26px; margin-right: 12px; }
 
-        /* --- BANNIERE PRINCIPALE (CORRECTION DU BUG) --- */
+        /* --- BANNIERE QUI POSE PROBLEME (CORRIGÉE) --- */
         .hero-banner-container { 
-            margin-top: 50px; 
-            margin-bottom: -80px; /* Chevauchement négatif */
-            padding: 0 20px; 
+            margin-top: 40px; 
+            margin-bottom: -80px; /* On la fait descendre sur la section blanche */
+            padding: 0 10px; 
             perspective: 1000px; 
             
-            /* On s'assure que le conteneur est bien positionné */
+            /* LA CORRECTION : */
             position: relative; 
-            z-index: 50; 
+            z-index: 50; /* Doit être plus grand que la section suivante */
         }
         .hero-banner {
             max-width: 1100px; width: 100%; height: auto;
             border-radius: 20px;
             box-shadow: 0 30px 60px rgba(0,0,0,0.15);
-            transform: rotateX(2deg); transition: transform 0.5s;
             display: block; margin: 0 auto;
+            transform: rotateX(2deg); transition: transform 0.5s;
         }
         .hero-banner:hover { transform: rotateX(0deg) scale(1.01); }
 
-        /* --- SECTIONS --- */
-        .section-wrapper { padding: 120px 20px 80px; max-width: 1200px; margin: 0 auto; }
-        .section-header { text-align: center; margin-bottom: 60px; max-width: 800px; margin-left: auto; margin-right: auto; }
-        .section-header h2 { font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 800; color: var(--text-dark); margin-bottom: 15px; }
-        
         /* --- FEATURES --- */
         .features-section { 
             background-color: var(--white); 
             position: relative; 
             
-            /* CORRECTION MAJEURE ICI : */
-            /* Cette section passe EN DESSOUS (z-index plus petit que le Hero) */
+            /* LA CORRECTION : Cette section est en dessous */
             z-index: 10; 
             
-            padding-top: 140px; /* Espace pour laisser la place à la bannière */
+            padding-top: 130px; /* On laisse de la place pour le haut de la bannière */
+            padding-bottom: 80px;
+            padding-left: 20px; padding-right: 20px;
         }
+        .section-header { text-align: center; margin-bottom: 50px; max-width: 800px; margin: 0 auto 50px; }
+        .section-header h2 { font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 800; color: var(--text-dark); margin-bottom: 10px; }
+
         .features-grid {
             display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px; margin-bottom: 80px;
+            gap: 25px; max-width: 1200px; margin: 0 auto 60px;
         }
         .feature-item {
-            text-align: left; padding: 40px 30px;
+            text-align: left; padding: 30px;
             border-radius: 25px; background: #fff; border: 1px solid #F0F4F8;
-            box-shadow: var(--shadow-card); transition: 0.3s;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05); transition: 0.3s;
         }
-        .feature-item:hover { transform: translateY(-8px); box-shadow: var(--shadow-hover); border-color: transparent; }
-        .feature-icon { 
-            font-size: 2.5rem; margin-bottom: 25px; display: inline-flex; align-items: center; justify-content: center;
-            width: 70px; height: 70px; border-radius: 20px;
-        }
+        .feature-item:hover { transform: translateY(-5px); box-shadow: var(--shadow-hover); }
+        .feature-icon { font-size: 2.5rem; margin-bottom: 20px; display: flex; align-items: center; justify-content: center; width: 60px; height: 60px; border-radius: 18px; }
         .f-blue .feature-icon { background: #E1F5FE; color: var(--primary); }
         .f-green .feature-icon { background: #E8F5E9; color: var(--accent-green); }
         .f-orange .feature-icon { background: #FFF3E0; color: var(--accent-gold); }
-        .feature-item h3 { font-size: 1.3rem; color: var(--text-dark); margin-bottom: 12px; font-weight: 700; }
+        .feature-item h3 { font-size: 1.2rem; color: var(--text-dark); margin-bottom: 10px; font-weight: 700; }
 
-        /* Bannière milieu */
-        .mid-banner { width: 100%; height: auto; display: block; border-radius: 25px; box-shadow: var(--shadow-hover); }
+        .mid-banner { width: 100%; height: auto; display: block; border-radius: 20px; box-shadow: var(--shadow-hover); max-width: 1200px; margin: 0 auto; }
 
         /* --- AVIS --- */
-        .reviews-section { background: #F8F9FA; border-top: 1px solid #eee; }
-        .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
-        .review-card { background: white; padding: 30px; border-radius: 20px; text-align: left; box-shadow: var(--shadow-card); }
-        .stars { color: var(--accent-gold); margin-bottom: 15px; font-size: 1.1rem; }
-        .review-text { font-style: italic; color: var(--text-body); margin-bottom: 20px; font-size: 0.95rem; line-height: 1.7; }
-        .reviewer { font-weight: 700; color: var(--text-dark); font-size: 0.9rem; display: flex; align-items: center; }
-        .avatar-placeholder { width: 35px; height: 35px; background: #ECEFF1; border-radius: 50%; margin-right: 12px; }
+        .reviews-section { background: #F8F9FA; padding: 80px 20px; }
+        .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; max-width: 1200px; margin: 0 auto; }
+        .review-card { background: white; padding: 25px; border-radius: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        .stars { color: var(--accent-gold); margin-bottom: 10px; }
 
         /* --- GALERIE --- */
-        .gallery-section { background: #fff; }
-        .gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+        .gallery-section { background: #fff; padding: 80px 20px; text-align: center; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; max-width: 1200px; margin: 0 auto; }
         .phone-frame {
-            border-radius: 20px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            border: 6px solid #2d3436; background: #eee; aspect-ratio: 9/19; transition: transform 0.3s;
+            border-radius: 18px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border: 4px solid #2d3436; background: #eee; aspect-ratio: 9/19;
         }
-        .phone-frame:hover { transform: scale(1.02); z-index: 5; }
         .phone-frame img { width: 100%; height: 100%; object-fit: cover; }
 
         /* --- FAQ --- */
-        .faq-section { max-width: 800px; margin: 0 auto; }
-        .faq-item { margin-bottom: 15px; border: 1px solid #eee; border-radius: 15px; background: white; overflow: hidden; transition: 0.3s; }
-        .faq-question { 
-            padding: 20px; font-weight: 700; color: var(--text-dark); cursor: pointer; display: flex; justify-content: space-between; align-items: center; user-select: none;
-        }
-        .faq-question span { font-size: 1.5rem; color: var(--primary); font-weight: 300; }
-        .faq-answer { padding: 0 20px 20px; color: var(--text-body); display: none; font-size: 0.95rem; border-top: 1px solid transparent; }
-        .faq-item.active .faq-answer { display: block; border-top-color: #f5f5f5; padding-top: 15px; animation: slideDown 0.3s; }
-        @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+        .faq-section { padding: 80px 20px; max-width: 800px; margin: 0 auto; }
+        .faq-item { margin-bottom: 10px; border: 1px solid #eee; border-radius: 15px; background: white; overflow: hidden; }
+        .faq-question { padding: 20px; font-weight: 700; color: var(--text-dark); cursor: pointer; display: flex; justify-content: space-between; }
+        .faq-answer { padding: 0 20px 20px; display: none; color: var(--text-body); font-size: 0.95rem; }
+        .faq-item.active .faq-answer { display: block; }
 
-        /* --- FOOTER & LEGAL --- */
+        /* --- FOOTER --- */
         .footer-cta {
             background: linear-gradient(135deg, #1A237E, #0d1246);
-            color: white; text-align: center; padding: 100px 20px 60px; margin-top: 0; position: relative;
+            color: white; text-align: center; padding: 80px 20px 60px;
         }
-        .footer-cta h2 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 40px; }
-        
-        .footer-legal {
-            margin-top: 50px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 30px;
-            font-size: 0.8rem; color: rgba(255,255,255,0.6);
-        }
-        .footer-legal a { color: white; text-decoration: none; margin: 0 10px; transition: 0.3s; }
-        .footer-legal a:hover { opacity: 0.8; text-decoration: underline; }
-        .disclaimer { font-size: 0.7rem; margin-top: 20px; opacity: 0.4; max-width: 800px; margin-left: auto; margin-right: auto; line-height: 1.4; }
+        .footer-cta h2 { font-size: clamp(1.8rem, 4vw, 2.8rem); margin-bottom: 30px; }
+        .footer-legal { margin-top: 50px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 30px; font-size: 0.8rem; color: rgba(255,255,255,0.6); }
+        .footer-legal a { color: white; text-decoration: none; margin: 0 8px; }
+        .footer-legal a:hover { text-decoration: underline; }
 
         /* --- MOBILE STICKY BTN --- */
         .mobile-sticky-btn {
             display: none; position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
             width: calc(100% - 40px); max-width: 400px;
             background: var(--accent-red); color: white;
-            padding: 16px; text-align: center; border-radius: 50px;
+            padding: 15px; text-align: center; border-radius: 50px;
             font-weight: 700; text-decoration: none; font-size: 1.1rem;
-            box-shadow: 0 10px 30px rgba(234, 82, 57, 0.4);
-            z-index: 1000; animation: slideUp 0.5s ease-out;
+            box-shadow: 0 10px 30px rgba(234, 82, 57, 0.4); z-index: 1000;
         }
 
-        /* --- RESPONSIVE --- */
+        /* RESPONSIVE BREAKPOINTS */
         @media (max-width: 1024px) {
-            .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 30px; }
-            .hero-banner-container { margin-bottom: -50px; }
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); }
         }
 
         @media (max-width: 768px) {
-            .hero { padding-top: 60px; }
-            .hero-banner-container { margin-top: 30px; margin-bottom: -50px; }
             .mobile-sticky-btn { display: block; }
-            .footer-cta { padding-bottom: 120px; }
-            .features-grid, .reviews-grid { grid-template-columns: 1fr; gap: 20px; }
-            .features-section { padding-top: 100px; }
-            .feature-item { padding: 30px 25px; }
+            .footer-cta { padding-bottom: 100px; }
+            .hero-banner-container { margin-bottom: -50px; margin-top: 30px; }
+            .features-section { padding-top: 90px; }
+            .features-grid, .reviews-grid { grid-template-columns: 1fr; }
         }
 
         @media (max-width: 480px) {
-            .hero h1 { font-size: 2.2rem; }
-            .app-icon { width: 100px; height: 100px; margin-bottom: 20px; }
-            .gallery-grid { grid-template-columns: 1fr; padding: 0 30px; }
-            .cta-button { padding: 14px 25px; font-size: 1rem; width: 100%; }
+            .gallery-grid { grid-template-columns: 1fr; padding: 0 40px; }
+            .hero h1 { font-size: 2rem; }
+            .app-icon { width: 100px; height: 100px; }
+            .cta-button { width: 100%; padding: 15px; }
             .footer-legal span { display: block; margin: 10px 0; }
         }
-        
-        @keyframes slideUp { from { transform: translate(-50%, 100px); } to { transform: translate(-50%, 0); } }
-        /* Animation d'apparition */
-        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
-        .reveal.active { opacity: 1; transform: translateY(0); }
-
     </style>
 </head>
 <body>
@@ -284,7 +240,7 @@
         <div class="shape shape-1"></div>
         <div class="shape shape-2"></div>
 
-        <div class="hero-content reveal active">
+        <div class="hero-content">
             <img src="paint (512 x 512 px) (1).png" alt="MathBac Logo" class="app-icon" onerror="this.src='https://placehold.co/150?text=ICON'">
             
             <div class="badge-new">Nouveau Programme </div>
@@ -297,85 +253,81 @@
             </div>
         </div>
 
-        <div class="hero-banner-container reveal">
+        <div class="hero-banner-container">
             <img src="banniere_2.png" alt="MathBac Interface" class="hero-banner" onerror="this.style.display='none'">
         </div>
     </header>
 
-    <section class="features-section section-wrapper">
-        <div class="section-header reveal">
+    <section class="features-section">
+        <div class="section-header">
             <h2>Tout ce qu'il vous faut. Rien de plus.</h2>
             <p>Une interface conçue par des enseignants pour aller droit au but.</p>
         </div>
 
         <div class="features-grid">
-            <div class="feature-item f-blue reveal">
+            <div class="feature-item f-blue">
                 <div class="feature-icon">📚</div>
                 <h3>Cours Synthétiques</h3>
                 <p>Fini les classeurs lourds. Accédez à des fiches de révision claires, triées par chapitre.</p>
             </div>
-            <div class="feature-item f-green reveal">
+            <div class="feature-item f-green">
                 <div class="feature-icon">🎓</div>
                 <h3>Annales Corrigées</h3>
                 <p>La clé de la réussite. Entraînez-vous sur de vrais sujets du Bac avec corrections détaillées.</p>
             </div>
-            <div class="feature-item f-orange reveal">
+            <div class="feature-item f-orange">
                 <div class="feature-icon">🚀</div>
                 <h3>Outils Intégrés</h3>
                 <p>Traceur de fonctions et calculatrice scientifique inclus. Plus besoin d'autre matériel.</p>
             </div>
         </div>
 
-        <div class="reveal">
-            <img src="banniere_1.png" alt="Outils Puissants" class="mid-banner" onerror="this.style.display='none'">
-        </div>
+        <img src="banniere_1.png" alt="Outils Puissants" class="mid-banner" onerror="this.style.display='none'">
     </section>
 
-    <section class="reviews-section section-wrapper">
-        <div class="section-header reveal">
+    <section class="reviews-section">
+        <div class="section-header">
             <h2>Ils l'utilisent déjà</h2>
             <p>Retours certifiés de nos premiers utilisateurs.</p>
         </div>
         <div class="reviews-grid">
-            <div class="review-card reveal">
+            <div class="review-card">
                 <div class="stars">★★★★★</div>
                 <p class="review-text">"Très bien et utile pour le niveau baccalauréat. C'est exactement ce qu'il me fallait pour mes révisions."</p>
-                <div class="reviewer"><div class="avatar-placeholder"></div>Utilisateur Samsung A53</div>
+                <div class="reviewer">Utilisateur Samsung A53</div>
             </div>
-            <div class="review-card reveal">
+            <div class="review-card">
                 <div class="stars">★★★★★</div>
                 <p class="review-text">"C'est très important pour les élèves de terminale. Le traceur de fonction est super fluide."</p>
-                <div class="reviewer"><div class="avatar-placeholder"></div>Amar E. (Galaxy A03s)</div>
+                <div class="reviewer">Amar E. (Galaxy A03s)</div>
             </div>
-            <div class="review-card reveal">
+            <div class="review-card">
                 <div class="stars">★★★★★</div>
                 <p class="review-text">"Application stable et complète. J'aime beaucoup la séparation entre Spécialité et Expertes."</p>
-                <div class="reviewer"><div class="avatar-placeholder"></div>Testeur Bêta</div>
+                <div class="reviewer">Testeur Bêta</div>
             </div>
         </div>
     </section>
 
-    <section class="gallery-section section-wrapper">
-        <div class="section-header reveal">
+    <section class="gallery-section">
+        <div class="section-header">
             <h2>Interface Premium</h2>
             <p>Un design épuré pour une concentration maximale.</p>
         </div>
         <div class="gallery-grid">
-            <div class="phone-frame reveal"><img src="screen1.jpg" alt="Choix Parcours" onerror="this.src='MATHBAC (8).jpg'"></div>
-            <div class="phone-frame reveal"><img src="MATHBAC (7).jpg" alt="Dashboard"></div>
-            <div class="phone-frame reveal"><img src="MATHBAC (1).jpg" alt="Formules"></div>
-            <div class="phone-frame reveal"><img src="MATHBAC (14).jpg" alt="Exercices"></div>
-            <div class="phone-frame reveal"><img src="MATHBAC (3).jpg" alt="Traceur"></div>
-            <div class="phone-frame reveal"><img src="MATHBAC (9).jpg" alt="Sujet Exam"></div>
-            <div class="phone-frame reveal"><img src="MATHBAC (10).jpg" alt="Corrigé"></div>
-            <div class="phone-frame reveal"><img src="MATHBAC (4).jpg" alt="Autre"></div>
+            <div class="phone-frame"><img src="screen1.jpg" alt="Choix Parcours" onerror="this.src='MATHBAC (8).jpg'"></div>
+            <div class="phone-frame"><img src="MATHBAC (7).jpg" alt="Dashboard"></div>
+            <div class="phone-frame"><img src="MATHBAC (1).jpg" alt="Formules"></div>
+            <div class="phone-frame"><img src="MATHBAC (14).jpg" alt="Exercices"></div>
+            <div class="phone-frame"><img src="MATHBAC (3).jpg" alt="Traceur"></div>
+            <div class="phone-frame"><img src="MATHBAC (9).jpg" alt="Sujet Exam"></div>
+            <div class="phone-frame"><img src="MATHBAC (10).jpg" alt="Corrigé"></div>
+            <div class="phone-frame"><img src="MATHBAC (4).jpg" alt="Autre"></div>
         </div>
     </section>
 
-    <section class="faq-section section-wrapper reveal">
-        <div class="section-header">
-            <h2>Questions Fréquentes</h2>
-        </div>
+    <section class="faq-section">
+        <div class="section-header"><h2>Questions Fréquentes</h2></div>
         <div class="faq-item" onclick="this.classList.toggle('active')">
             <div class="faq-question">L'application fonctionne-t-elle sans internet ? <span>+</span></div>
             <div class="faq-answer">Oui ! La plupart des outils comme la calculatrice et le traceur fonctionnent totalement hors ligne.</div>
@@ -406,26 +358,11 @@
                 <a href="legal.html">Mentions Légales</a> | 
                 <a href="mailto:sastoukadigital@gmail.com">Contact</a>
             </span>
-            
             <p class="disclaimer">
                 Ce site ne fait pas partie du site web Facebook ou de Facebook Inc. En outre, ce site n'est pas endossé par Facebook en aucune façon. FACEBOOK est une marque commerciale de FACEBOOK, Inc.
             </p>
         </div>
     </footer>
-
-    <script>
-        function reveal() {
-            var reveals = document.querySelectorAll(".reveal");
-            for (var i = 0; i < reveals.length; i++) {
-                var windowHeight = window.innerHeight;
-                var elementTop = reveals[i].getBoundingClientRect().top;
-                var elementVisible = 50;
-                if (elementTop < windowHeight - elementVisible) { reveals[i].classList.add("active"); }
-            }
-        }
-        window.addEventListener("scroll", reveal);
-        reveal();
-    </script>
 
 </body>
 </html>
