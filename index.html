@@ -2,7 +2,8 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    
     <title>MATHBAC - L'application n°1 pour le Bac Maths</title>
     <meta name="description" content="L'outil ultime pour réussir son Bac de Maths. Cours, Annales, Traceur et Calculatrice.">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -25,14 +26,12 @@
 
     <style>
         :root {
-            /* Palette extraite de l'icône */
             --primary: #2D81C5;
             --primary-dark: #1F6296;
             --cyan-light: #95E9FA;
             --accent-red: #EA5239;
             --accent-green: #1E7E46;
             --accent-gold: #F09325;
-            
             --text-dark: #1A237E;
             --text-body: #455A64;
             --bg-light: #F8F9FA;
@@ -41,7 +40,7 @@
             --shadow-hover: 0 20px 40px rgba(0,0,0,0.1);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
         body {
             font-family: 'Poppins', sans-serif;
@@ -49,7 +48,8 @@
             color: var(--text-body);
             line-height: 1.6;
             overflow-x: hidden;
-            font-size: 16px; /* Taille de base pour éviter le zoom */
+            font-size: 16px;
+            width: 100%;
         }
 
         /* --- HERO SECTION --- */
@@ -58,13 +58,14 @@
             padding: 60px 20px 0px; 
             text-align: center;
             position: relative;
+            /* Le Hero doit être au-dessus de la section blanche */
             z-index: 20; 
-            overflow: visible;
+            overflow: visible; 
         }
 
         .hero-content { position: relative; z-index: 2; max-width: 800px; margin: 0 auto; }
 
-        /* Décorations arrière-plan */
+        /* Décorations */
         .shape { position: absolute; opacity: 0.1; z-index: 0; pointer-events: none; }
         .shape-1 { top: -50px; left: -50px; width: 300px; height: 300px; background: var(--primary); border-radius: 50%; filter: blur(60px); }
         .shape-2 { top: 20%; right: -100px; width: 200px; height: 200px; background: var(--accent-red); border-radius: 50%; filter: blur(70px); }
@@ -101,7 +102,6 @@
             max-width: 600px; margin-left: auto; margin-right: auto;
         }
 
-        /* Styles des boutons principaux */
         .cta-button {
             display: inline-flex; align-items: center; justify-content: center;
             background: var(--primary); color: white;
@@ -110,36 +110,40 @@
             transition: 0.2s; box-shadow: 0 10px 25px rgba(45, 129, 197, 0.3);
             border: none; white-space: nowrap; cursor: pointer;
         }
-        .cta-button:hover { transform: translateY(-3px); background: var(--primary-dark); }
         .cta-button img { height: 26px; margin-right: 12px; }
 
-        /* --- BANNIERE --- */
+        /* --- CORRECTION BANNIERE COUPÉE --- */
         .hero-banner-container { 
             margin-top: 40px; 
-            margin-bottom: -80px; 
+            margin-bottom: -80px; /* On la fait descendre */
             padding: 0 10px; 
             perspective: 1000px; 
+            
+            /* FORCE L'IMAGE AU PREMIER PLAN ABSOLU */
             position: relative; 
-            z-index: 50;
+            z-index: 100; 
         }
+        
         .hero-banner {
             max-width: 1100px; width: 100%; height: auto;
             border-radius: 20px;
             box-shadow: 0 30px 60px rgba(0,0,0,0.15);
             display: block; margin: 0 auto;
             transform: rotateX(2deg); transition: transform 0.5s;
+            background: #000; /* Fond noir au cas où l'image charge mal */
         }
-        .hero-banner:hover { transform: rotateX(0deg) scale(1.01); }
 
-        /* --- FEATURES --- */
+        /* --- FEATURES SECTION (DOIT ETRE DERRIERE) --- */
         .features-section { 
             background-color: var(--white); 
             position: relative; 
+            /* FORCE LE BLANC EN ARRIERE PLAN */
             z-index: 10; 
-            padding-top: 130px; 
+            padding-top: 130px; /* Espace pour que la bannière ne cache pas le texte */
             padding-bottom: 80px;
             padding-left: 20px; padding-right: 20px;
         }
+
         .section-header { text-align: center; margin-bottom: 50px; max-width: 800px; margin: 0 auto 50px; }
         .section-header h2 { font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 800; color: var(--text-dark); margin-bottom: 10px; }
 
@@ -152,7 +156,6 @@
             border-radius: 25px; background: #fff; border: 1px solid #F0F4F8;
             box-shadow: 0 10px 30px rgba(0,0,0,0.05); transition: 0.3s;
         }
-        .feature-item:hover { transform: translateY(-5px); box-shadow: var(--shadow-hover); }
         .feature-icon { font-size: 2.5rem; margin-bottom: 20px; display: flex; align-items: center; justify-content: center; width: 60px; height: 60px; border-radius: 18px; }
         .f-blue .feature-icon { background: #E1F5FE; color: var(--primary); }
         .f-green .feature-icon { background: #E8F5E9; color: var(--accent-green); }
@@ -193,13 +196,13 @@
         .footer-legal a { color: white; text-decoration: none; margin: 0 8px; }
         .footer-legal a:hover { text-decoration: underline; }
 
-        /* --- MOBILE STICKY BTN (CORRIGÉ) --- */
+        /* --- MOBILE STICKY BTN (CORRIGÉ & CENTRÉ) --- */
         .mobile-sticky-btn {
             display: none; /* Caché sur PC */
             position: fixed; 
             bottom: 20px; 
             left: 50%; 
-            transform: translateX(-50%); /* Centre parfaitement horizontalement */
+            transform: translateX(-50%); /* Centrage horizontal absolu */
             width: calc(100% - 40px); 
             max-width: 400px;
             background: var(--accent-red); 
@@ -212,17 +215,16 @@
             box-shadow: 0 10px 30px rgba(234, 82, 57, 0.4); 
             z-index: 1000;
             
-            /* Flexbox pour centrer le contenu (icône + texte) */
+            /* FLEXBOX POUR CENTRER L'ICONE ET LE TEXTE */
             align-items: center;
             justify-content: center;
         }
         
-        /* Style de l'image dans le bouton flottant */
+        /* Icône Google Play dans le bouton flottant */
         .mobile-sticky-btn img {
             height: 24px;
-            margin-right: 10px;
-            /* Rend l'icône blanche */
-            filter: brightness(0) invert(1); 
+            margin-right: 12px;
+            filter: brightness(0) invert(1); /* Rend l'icône blanche */
         }
 
         /* RESPONSIVE BREAKPOINTS */
@@ -231,19 +233,20 @@
         }
 
         @media (max-width: 768px) {
-            /* Affiche le bouton sur mobile et tablette */
+            /* Affiche le bouton sur mobile */
             .mobile-sticky-btn { display: flex; } 
             
-            .footer-cta { padding-bottom: 100px; }
-            .hero-banner-container { margin-bottom: -50px; margin-top: 30px; }
-            .features-section { padding-top: 90px; }
+            /* Espace en bas pour que le bouton ne cache pas le texte */
+            .footer-cta { padding-bottom: 140px !important; }
+            
+            .hero-banner-container { margin-bottom: -60px; margin-top: 30px; }
+            .features-section { padding-top: 100px; }
             .features-grid, .reviews-grid { grid-template-columns: 1fr; }
         }
 
         @media (max-width: 480px) {
             .gallery-grid { grid-template-columns: 1fr; padding: 0 40px; }
             .hero h1 { font-size: 2rem; }
-            .app-icon { width: 100px; height: 100px; }
             .cta-button { width: 100%; padding: 15px; }
             .footer-legal span { display: block; margin: 10px 0; }
         }
@@ -263,7 +266,7 @@
         <div class="hero-content">
             <img src="paint (512 x 512 px) (1).png" alt="MathBac Logo" class="app-icon" onerror="this.src='https://placehold.co/150?text=ICON'">
             
-            <div class="badge-new">Nouveau Programme 2025</div>
+            <div class="badge-new">Nouveau Programme</div>
             <h1>Ne subissez plus les Maths.<br><span>Maîtrisez-les.</span></h1>
             <p class="subtitle">Spécialité • Expertes • Complémentaires. <br>L'application tout-en-un pour viser la Mention Très Bien.</p>
             
@@ -335,14 +338,14 @@
             <p>Un design épuré pour une concentration maximale.</p>
         </div>
         <div class="gallery-grid">
-            <div class="phone-frame"><img src="screen1.jpg" alt="Choix Parcours" onerror="this.src='MATHBAC (8).jpg'"></div>
+            <div class="phone-frame"><img src="MATHBAC (8).jpg" alt="Choix Parcours" onerror="this.src='MATHBAC (8).jpg'"></div>
             <div class="phone-frame"><img src="MATHBAC (7).jpg" alt="Dashboard"></div>
             <div class="phone-frame"><img src="MATHBAC (1).jpg" alt="Formules"></div>
             <div class="phone-frame"><img src="MATHBAC (14).jpg" alt="Exercices"></div>
             <div class="phone-frame"><img src="MATHBAC (3).jpg" alt="Traceur"></div>
             <div class="phone-frame"><img src="MATHBAC (9).jpg" alt="Sujet Exam"></div>
             <div class="phone-frame"><img src="MATHBAC (10).jpg" alt="Corrigé"></div>
-            <div class="phone-frame"><img src="MATHBAC (6).jpg" alt="Autre"></div>
+            <div class="phone-frame"><img src="MATHBAC (4).jpg" alt="Autre"></div>
         </div>
     </section>
 
